@@ -5,15 +5,20 @@ import ContentCategoryLink from "../generics/ContentCategoryLink";
 import { ImageHTML } from "../generics/ImageHtml";
 
 
-export default function FeedItem({ contentItem, position, showCatLink }: {
+type FeedItemProps = {
     contentItem: ContentItemPublic,
     position: number
     showCatLink: boolean
-}) {
+}
+
+/**
+ * article preview snippet
+ */
+export default function FeedItem({ contentItem, position, showCatLink }: FeedItemProps) {
     const { title, intro, canonical, published, content_category, image } = contentItem
     const { readable, iso } = readableAndIsoTimeByUnixEpoch(published)
     const path = createPath({ pathname: canonical })
-   
+
     return (
         <section className={`preview ${content_category.toLowerCase()}`}>
             {showCatLink ? (

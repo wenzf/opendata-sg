@@ -139,7 +139,6 @@
   --amber-12: #4f3422;
   --brown-11: #815e46;
   --brown-12: #3e332e;
-
 }
 
 @supports (color: color(display-p3 1 1 1)) {
@@ -245,4 +244,3 @@
     }
   }
 }
-

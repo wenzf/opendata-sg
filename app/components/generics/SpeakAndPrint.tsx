@@ -41,6 +41,10 @@ const speakAndPrintReducer = (state: SpeakAndPrintInitStates, action: StateActio
     return { ...state, [prop]: value }
 }
 
+
+/**
+ *  markup and logic for print and voice of articles
+ */
 export default function SpeakAndPrint({ texts }: { texts: string }) {
     const speakerRef = useRef(EasySpeech)
     const voicesRef = useRef<SpeechSynthesisVoice[] | null>(null)
@@ -78,8 +82,8 @@ export default function SpeakAndPrint({ texts }: { texts: string }) {
         if (typeof window !== 'object') return
         const init = await speakerRef?.current?.init()
         if (init) {
-            setter({ prop: 'isReady', value: init })
             const voicesFiltered: SpeechSynthesisVoice[] = speakerRef.current.filterVoices({ language: 'de' })
+            if (voicesFiltered.length) setter({ prop: 'isReady', value: init })
             const defaultVoice = voicesFiltered.filter((it) => it.default === true)
             if (defaultVoice.length) setter({ prop: 'voice', value: defaultVoice[0] }) // setVoice(defaultVoice[0])
             voicesRef.current = voicesFiltered

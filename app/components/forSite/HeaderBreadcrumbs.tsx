@@ -5,6 +5,9 @@ import { createBreadCrumbProps } from "~/utils/forContent"
 import { usePathHandle } from "~/utils/hooks"
 
 
+/**
+ * site breadcrumb view
+ */
 const BreadCrumbFragment = ({ label, position, path, isLast }: BreadCrumbFragmentProp) => (
     <div
         itemProp="itemListElement"

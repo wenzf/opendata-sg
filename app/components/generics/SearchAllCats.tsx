@@ -3,6 +3,10 @@ import { SyntheticEvent, useRef } from "react"
 import { PUBLIC_CONFIG } from "~/config"
 import SearchIconSVG from "~/resources/icons/SearchIconSVG"
 
+
+/**
+ *  markup and logic for sitewide search
+ */
 export default function SearchAllCats() {
     const navigate = useNavigate()
     const searchString = useRef<HTMLInputElement>(null)
@@ -25,7 +29,7 @@ export default function SearchAllCats() {
                 Suche
             </label>
             <input  itemProp="query-input"  name="search_term_string" required aria-required className="inp1" ref={searchString} id="suche" type="search" />
-            <button className="btn1" type="submit"  >
+            <button className="btn2" type="submit"  >
                 <SearchIconSVG height={24} width={24} aria-label="Stichwortsuche" />
             </button>
         </form>

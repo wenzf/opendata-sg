@@ -26,7 +26,9 @@ const modificationRulesNoImage: PrettyMarkupModificationRule[] = [
     { selector: 'p>b', replacement: 'h2', maxLenReplaceText: 300 },
 ];
 
-
+/**
+ * constructs config for API calls
+ */
 export const dataAPIConfigConstructor = (
     jobsForAPI: ContentCategoryKeys[],
     offset: number,

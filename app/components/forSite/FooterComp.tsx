@@ -2,6 +2,9 @@ import { NavLink } from "@remix-run/react";
 import { PUBLIC_CONFIG } from "~/config";
 
 
+/**
+ * site footer
+ */
 export default function FooterComp() {
     const { DOMAIN_NAME, ROUTE_FRAGMENTS: { IMPRESSUM } } = PUBLIC_CONFIG
 

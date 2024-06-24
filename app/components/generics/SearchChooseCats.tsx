@@ -8,6 +8,9 @@ import { contentCategoryBySearchLocationParam } from "~/utils/forContent";
 import SearchIconSVG from "~/resources/icons/SearchIconSVG";
 
 
+/**
+ * markup and logic for site search by content categories
+ */
 export default function SearchChooseCats() {
     const textInputRef = useRef<HTMLInputElement>(null)
     const checkKTME = useRef<typeof Checkbox.Root.arguments>(null)

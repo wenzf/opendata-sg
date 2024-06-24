@@ -5,6 +5,9 @@ import { extractAndModifyTextContent, removeNewlinesAndTabsLoop, replacerNoWhite
 import { articlePathByContentCategoryAndPublishedAndTitle } from '~/utils/forContent';
 
 
+/**
+ *  assemble article data to internal data strucutre
+ */
 export const prettyMarkup = (
     apiResponse: APIResponse,
     modificationRules: PrettyMarkupModificationRule[],

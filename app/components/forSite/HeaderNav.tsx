@@ -2,6 +2,7 @@ import { NavLink } from "@remix-run/react"
 import { PUBLIC_CONFIG } from "~/config"
 import texts from "~/texts"
 
+
 const {
     Kanton, Stadt, Mitteilungen,
     Polizei, Vernehmlassungen, Suche
@@ -15,7 +16,9 @@ const {
     }
 } = PUBLIC_CONFIG
 
-
+/**
+ *  site header navigation
+ */
 export const HeaderNav = () => (
     <nav className="site_navs_scroll">
         <table className="site_navs">

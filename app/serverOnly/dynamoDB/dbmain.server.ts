@@ -7,22 +7,13 @@ import {
     DbUpdateIndexProps, DdbIndex
 } from "~/types";
 
-// scan for dev
 
 invariant('SESSION_SECRET', 'SESSION_SECRET not set')
-export async function dbScanMain(startKey?: string) {
-    let optional = {};
-    if (startKey) optional = { ExclusiveStartKey: startKey }
-    const db = await arc.tables();
-    const dat = await db.main.scan({
-        Limit: 200,
-        //  ProjectionExpression: 'user_name, user_name_path',
-        ...optional,
 
-    })
-    return dat
-}
 
+/**
+ * store any data to db
+ */
 export async function dbPutAny({ pk, sk, payload }: {
     pk: string,
     sk: number,
@@ -34,13 +25,15 @@ export async function dbPutAny({ pk, sk, payload }: {
 }
 
 
+/**
+ * data for feeds; reduced, without article body
+ */
 export async function dbGetContentList({ pk, limit }: {
     pk: ContentCategoryKeys,
     limit: number
 }): Promise<ContentItemPublic[]> {
     const db = await arc.tables();
     const res = await db.main.query({
-        //Limit: PUBLIC_CONFIG.ENTRIES_SHOWN_IN_FEED,
         Limit: limit,
         KeyConditionExpression: "pk = :pk",
         ExpressionAttributeValues: { ":pk": pk },
@@ -51,7 +44,9 @@ export async function dbGetContentList({ pk, limit }: {
     return []
 }
 
-
+/**
+ * data for paginated feed requests; reduced, without article body
+ */
 export async function dbGetContentListPaginated({ pk, positionLow, positionHigh }: {
     pk: ContentCategoryKeys,
     positionLow: number,
@@ -70,6 +65,9 @@ export async function dbGetContentListPaginated({ pk, positionLow, positionHigh 
 }
 
 
+/**
+ * data for searches; reduced, without article body
+ */
 export async function dbGetContentListSearch({ pk, searchTerm, lastEvaluatedKey }: {
     pk: ContentCategoryKeys
     searchTerm: string
@@ -91,6 +89,9 @@ export async function dbGetContentListSearch({ pk, searchTerm, lastEvaluatedKey 
 }
 
 
+/**
+ * reduced set for news sitemap
+ */
 export async function dbGetContentListForNewsSitemap({ pk }: {
     pk: ContentCategoryKeys
 }): Promise<ContentItemPublic[]> {
@@ -107,7 +108,9 @@ export async function dbGetContentListForNewsSitemap({ pk }: {
     return res
 }
 
-
+/**
+ * reduced set for common sitemap
+ */
 export async function dbGetContentListForCommonSitemap({ pk }: {
     pk: ContentCategoryKeys
 }): Promise<ContentItemPublic[]> {
@@ -122,6 +125,9 @@ export async function dbGetContentListForCommonSitemap({ pk }: {
     return []
 }
 
+/**
+ * bulk put content items
+ */
 export async function dbPutContentBulk(bulk: ContentItemInternal[]) {
     const db = await arc.tables();
     for (let i = 0; i < bulk.length; i += 1) {
@@ -136,7 +142,9 @@ export async function dbPutContentBulk(bulk: ContentItemInternal[]) {
     return 'ok'
 }
 
-
+/**
+ * get one content item
+ */
 export async function dbGetContent({ pk, sk }: {
     pk: ContentCategoryKeys,
     sk: number
@@ -148,6 +156,9 @@ export async function dbGetContent({ pk, sk }: {
 }
 
 
+/**
+ * get index file, seed if none is present for init
+ */
 export async function dbGetIndex(): Promise<DdbIndex | null> {
     try {
         const db = await arc.tables();
@@ -164,6 +175,10 @@ export async function dbGetIndex(): Promise<DdbIndex | null> {
     }
 }
 
+
+/**
+ * index updater
+ */
 export async function dbUpdateIndex(
     props: DbUpdateIndexProps[]
 ): Promise<AsyncSuccess> {
@@ -196,6 +211,9 @@ export async function dbUpdateIndex(
 }
 
 
+/**
+ * counter updater
+ */
 export async function dbUpdateContentItemCounter({ pk, sk, human }: {
     pk: ContentCategoryKeys, sk: number, human: boolean
 }) {
@@ -212,3 +230,20 @@ export async function dbUpdateContentItemCounter({ pk, sk, human }: {
         return null
     }
 }
+
+
+/*
+// scan for dev
+export async function dbScanMain(startKey?: string) {
+    let optional = {};
+    if (startKey) optional = { ExclusiveStartKey: startKey }
+    const db = await arc.tables();
+    const dat = await db.main.scan({
+        Limit: 200,
+        //  ProjectionExpression: 'user_name, user_name_path',
+        ...optional,
+
+    })
+    return dat
+}
+*/

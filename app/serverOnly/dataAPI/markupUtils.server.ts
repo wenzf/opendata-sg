@@ -3,6 +3,9 @@ import { parseHTML } from 'linkedom';
 import { APIResult, PrettyMarkupModificationRule } from '~/types';
 
 
+/**
+ * destructure content for internal data structure (helper)
+ */
 export function extractAndModifyTextContent(
     html: APIResult["description"],
     modificationRules: PrettyMarkupModificationRule[]

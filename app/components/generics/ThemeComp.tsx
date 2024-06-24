@@ -2,11 +2,18 @@ import { SetStateAction } from "react"
 import ThemeIconSVG from "~/resources/icons/ThemeIconSVG"
 import { Theme } from "~/types"
 
-export default function ThemeComp({ theme, themeSetter, prefsDarkmode }: {
+
+type ThemeCompProps =  {
     themeSetter: (e: SetStateAction<Theme>) => void
     theme: Theme
     prefsDarkmode: boolean
-}) {
+}
+
+/**
+ *  toggle site theme
+ */
+export default function ThemeComp({ theme, themeSetter, prefsDarkmode }: 
+    ThemeCompProps) {
     const onChangetheme = () => {
         themeSetter((prev) => prev === ''
             ? (prefsDarkmode ? 'light' : 'dark')

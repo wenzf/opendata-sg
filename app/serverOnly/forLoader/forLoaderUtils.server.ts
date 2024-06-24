@@ -5,6 +5,9 @@ import { Params } from "@remix-run/react";
 import { NS_CONTENT_CATEGORY, PUBLIC_CONFIG } from "~/config";
 import { json } from "react-router";
 
+/**
+ * check index for last fetch (helper)
+ */
 export const checkIfDataIsCurrent = async (
     checkItems: ContentCategoryKeys[]
 ): Promise<{ dataStatus: boolean[], idx: DdbIndex } | null> => {
@@ -25,7 +28,9 @@ export const checkIfDataIsCurrent = async (
     }
 }
 
-
+/**
+ * return content type by params
+ */
 export const contentTypesAndItemsPerRequestByParams = (params: Params): {
     requestedContentTypes: ContentCategoryKeys[]
     itemsPerRequest: number
@@ -43,7 +48,6 @@ export const contentTypesAndItemsPerRequestByParams = (params: Params): {
     } = PUBLIC_CONFIG
 
     const { KTME, KTVE, STME, STPO } = NS_CONTENT_CATEGORY
-
 
     let requestedContentTypes: ContentCategoryKeys[]
     let itemsPerRequest = ENTRIES_SHOWN_IN_FEED
@@ -80,17 +84,3 @@ export const contentTypesAndItemsPerRequestByParams = (params: Params): {
     }
     return { requestedContentTypes, itemsPerRequest }
 }
-
-
-
-/*
-
-export const slugFromPath = (path: string): string | null => {
-    const splitPath = path.split('/')
-
-    if (splitPath.length === 4) return splitPath[4]
-
-    return null
-}
-
-*/

@@ -6,11 +6,17 @@ import ThemeComp from "../generics/ThemeComp"
 import { SetStateAction } from "react"
 
 
-export const HeaderComp = ({ themeSetter, theme, prefsDarkmode }: {
+type HeaderCompProps = {
     themeSetter: (e: SetStateAction<Theme>) => void
     theme: Theme
     prefsDarkmode: boolean
-}) => (
+}
+
+/**
+ *  site header view
+ */
+export const HeaderComp = ({ themeSetter, theme, prefsDarkmode }:
+     HeaderCompProps) => (
     <header>
         <HeaderBreadcrumbs />
         <div className="header_comp">

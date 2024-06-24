@@ -20,6 +20,9 @@ const {
 } = BACKEND_CONFIG;
 
 
+/**
+ * search params for API (helper)
+ */
 const constructParams = (params: string[]) => {
     let paramsFragments = ''
     for (let i = 0; i < params.length; i += 1) {
@@ -30,6 +33,9 @@ const constructParams = (params: string[]) => {
 }
 
 
+/**
+ *  fetch API (helper)
+ */
 const fetchAPI = async ({
     endpoint,
     params,
@@ -49,7 +55,9 @@ const fetchAPI = async ({
     }
 }
 
-
+/**
+ *  get API data by configuration
+ */
 export const dataAPI = async ({
     ...props
 }: DataAPI) => {

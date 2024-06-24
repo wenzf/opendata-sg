@@ -12,6 +12,9 @@ const {
 const { KTME, KTVE, STME, STPO } = NS_CONTENT_CATEGORY
 
 
+/**
+ * returns content types by param on search route (helper)
+ */
 export const contentCategoryBySearchLocationParam = (
     searchLocation: string | undefined
 ): ContentCategoryKeys[] | null => {
@@ -31,6 +34,9 @@ const slugByTitle = (title: string): string => {
 }
 
 
+/**
+ * returns path fragments by content types (helper)
+ */
 export const contentRouteByContentCategory = (
     contentCategory: ContentCategoryKeys
 ) => {
@@ -79,7 +85,9 @@ function removeCanonicalDuplicate(
     return result;
 }
 
-
+/**
+ * sort feed times by date and remvoe duplicates
+ */
 export const prettyFeed = (
     contentItems: ContentItemPublic[]
 ): ContentItemPublic[] => {
@@ -115,7 +123,9 @@ export const contentTypeByParams = (
     }
 }
 
-
+/**
+ * pre configure breadcrumbs
+ */
 export const createBreadCrumbProps = ({ params, page }: {
     params: Params
     page: keyof typeof PUBLIC_CONFIG.PAGE_HANDLES

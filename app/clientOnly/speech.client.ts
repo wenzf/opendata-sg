@@ -1,18 +1,16 @@
-
+/**
+ * convert html markup to speakable SpeechSynthesisVoice text
+ */
 export function convertToSpeakableText(htmlText: string): string {
-   if (typeof window !== 'object') return 'asdf'
+   if (typeof window !== 'object') return ''
     const textParser = new DOMParser();
     const doc = textParser.parseFromString(htmlText, "text/html");
 
-    console.log({ doc })
-
-    // Function to recursively process elements and extract text
     function processElement(element: HTMLElement): string {
         let textContent = "";
 
         console.log({ element })
 
-        // Handle supported elements
         switch (element.tagName.toLowerCase()) {
             case "p":
                 textContent = element.textContent + " \n ";
@@ -40,8 +38,6 @@ export function convertToSpeakableText(htmlText: string): string {
                         return acc;
                     }, "");
                 break;
-
-            //    break;
             default:
                 // Ignore unsupported elements and their content
                 break;

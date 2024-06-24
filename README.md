@@ -9,24 +9,32 @@ A full-stack open data web project with media releases from the Canton of St. Ga
 The focus is on low costs for the technical infrastructure, user-friendliness for visitors, web standards for accessibility and that content can be easily indexed by search engines.
 
 
+
 ## Setup
 
-- Built with [Remix](https://github.com/remix-run)
-- Deployed on AWS, using [Arc Template](https://github.com/remix-run/remix/tree/main/templates/classic-remix-compiler/arc)
-- [DynamoDB](https://aws.amazon.com/dynamodb/)
-- Using data from [opendata.swiss](https://opendata.swiss)
+- Built with [Remix](https://github.com/remix-run), a fullstack SSR web framework built on top of `react` and `react-router`
+- Deployed on AWS, using [Arc Template](https://github.com/remix-run/remix/tree/main/templates/classic-remix-compiler/arc), [DynamoDB](https://aws.amazon.com/dynamodb/)
+- Data from [opendata.swiss](https://opendata.swiss)
+
+
+
+## APIs
+
+- [Kanton St. Gallen](https://daten.sg.ch/explore/dataset/newsfeed-medienmitteilungen-kanton-stgallen/api/)
+- [Stadt St. Gallen](https://daten.stadt.sg.ch/explore/dataset/newsfeed-stadtverwaltung-stgallen/api/)
 
 
 
 ## Key components
 
 |name|file|function|noteworthy dependencies|
-|---|---|---|---|
+|---|---|-------------------|---|
 |`dataAPI`|[/app/serverOnly/dataAPI/dataAPI.server.ts](./app/serverOnly/dataAPI/dataAPI.server.ts)|fetching data from API|[dataAPIConfigConstructor](./app/serverOnly/dataAPI/dataAPIConfigConstructor.server.ts)|
-|*database*|[/app/serverOnly/dynamoDB/dbmain.server.ts](./app/serverOnly/dynamoDB/dbmain.server.ts)|interactions with DynamoDB|--|
+|*database*|[/app/serverOnly/dynamoDB/dbmain.server.ts](./app/serverOnly/dynamoDB/dbmain.server.ts)|interactions with DynamoDB||
 |`extractAndModifyTextContent`|[/app/serverOnly/dataAPI/markupUtils.server.ts](./app/serverOnly/dataAPI/markupUtils.server.ts)|re-format text content: extract article lead (used for *meta description*), replace subtitles formatted in `<b>` with `<h2>` tags|[linkdom](https://github.com/linkdom/linkdom), [sanitize-html](https://github.com/apostrophecms/sanitize-html)|
-|`prettyMarkup`|[./app/serverOnly/dataAPI/prettyMarkup.server.ts](./app/serverOnly/dataAPI/prettyMarkup.server.ts)|convert article to the internal datastructure by configuration|--|
+|`prettyMarkup`|[./app/serverOnly/dataAPI/prettyMarkup.server.ts](./app/serverOnly/dataAPI/prettyMarkup.server.ts)|convert article to the internal datastructure by configuration||
 |`handleDataFeedRequest`|[/app/serverOnly/forLoader/handleDataFeedRequest.server.ts](./app/serverOnly/forLoader/handleDataFeedRequest.server.ts)|data reqeust by route params: check for last update, fetch data from API, store new data|`extractAndModifyTextContent`,  `prettyMarkup`,  `dataAPI`,  *database*|
+
 
 
 ## Keeping database in sync with data from APIs
@@ -35,8 +43,9 @@ Search engines make several requests every day to websites that regularly have n
 
 - 1: when the request arrives, an index file is read from the database. This contains the timestamp of when API was requested the and the number of entries (`total_results`) per API. If the last query was longer ago than `DATA_UPDATE_INTERVAL_TIME_IN_MS`, continue in step 2, otherwise, step 3b
 - 2: request to the API. Update the index file. If `total_results` from the response matches the entry in the index file, continue with step 3b, otherwise, step 3a.
-- 3a: The data from the API from the previous step is converted into the internal data structure and saved in the database. The response is then sent to the client
+- 3a: The data from the API from the previous step is converted into the internal data structure and saved in the database. The response is then sent to the client.
 - 3b: Content is retrieved from the database and sent to the client.
+
 
 
 ## Development and deployment
@@ -52,24 +61,24 @@ The project uses the a standard template for development and deployment. Just fo
 
 
 ```sh
- npm run dev
+    $ npm run dev
 ```
 
-### Enviroment variables
+### Setting enviroment variables
 
 ```sh
-npx arc env --add --env staging SESSION_SECRET $(openssl rand -hex 32)
-npx arc env --add --env production SESSION_SECRET $(openssl rand -hex 32)
-npx arc env --add --env testing SESSION_SECRET $(openssl rand -hex 32)
-npx arc env --add --env staging ARC_APP_SECRET $(openssl rand -hex 32)
-npx arc env --add --env production ARC_APP_SECRET $(openssl rand -hex 32)
-npx arc env --add --env testing ARC_APP_SECRET $(openssl rand -hex 32)
+    $ npx arc env --add --env staging SESSION_SECRET $(openssl rand -hex 32)
+    $ npx arc env --add --env production SESSION_SECRET $(openssl rand -hex 32)
+    $ npx arc env --add --env testing SESSION_SECRET $(openssl rand -hex 32)
+    $ npx arc env --add --env staging ARC_APP_SECRET $(openssl rand -hex 32)
+    $ npx arc env --add --env production ARC_APP_SECRET $(openssl rand -hex 32)
+    $ npx arc env --add --env testing ARC_APP_SECRET $(openssl rand -hex 32)
 ```
 
-### Possible Troubles
+### Possible troubles
 
 - Did you set environment variables? See above.
-- Did you set secrets for the server functions on Github?
+- Did you set secrets for the server functions on Github (`AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`)?
 - Are AWS access keys set correctly?
 - Did you modify the project and see hydration errors in the browser console? This indicates that the server side markup is not identical with the client side rendered version. Reasons for is is often incorrect HTML markup which is corrected client side and therefore doesn't match with the backend rendered version. Another possibility is formatted timestamps without defined timezones. In such cases the markup from the server would use server time which might not match with client time, leading to different markups.
 

@@ -6,7 +6,9 @@ import { contentCategoryBySearchLocationParam } from "./forContent";
 const { STME, STPO, KTME, KTVE } = NS_CONTENT_CATEGORY
 const keyword = '{{keyword}}'
 
-
+/**
+ * for search routes; returns text fragments for meta data by params
+ */
 export const textsAndMetasForSearchRouteByParams = (params: Params): {
     h1: string,
     title: string
@@ -75,7 +77,9 @@ export const textsAndMetasForSearchRouteByParams = (params: Params): {
     }
 }
 
-
+/**
+ * for other dynamic pages; returns text fragments for meta data by params
+ */
 export const textAndMetasForFeedRoutesByParams = (params: Params) => {
     const {
         ROUTE_FRAGMENTS: { KANTON, STADT, MITTEILUNGEN, VERNEHMLASSUNGEN, POLIZEI }

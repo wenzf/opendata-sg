@@ -6,10 +6,16 @@ import ArrowRightIconSVG from "~/resources/icons/ArrowRightIconSVG"
 import { DdbIndex } from "~/types"
 import { contentRouteByContentCategory, contentTypeByParams } from "~/utils/forContent"
 
-export default function PaginationComp({ idx, params }: {
+
+type PaginationCompProps = {
     idx: DdbIndex
     params: Params
-}) {
+}
+
+/**
+ * pagination for feed pages
+ */
+export default function PaginationComp({ idx, params }: PaginationCompProps) {
     const contentType = contentTypeByParams(params)
     const activeLink = useRef<HTMLAnchorElement>(null);
     const currentPageNum = params?.pageNum ? parseInt(params.pageNum) : 0

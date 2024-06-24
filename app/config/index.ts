@@ -15,7 +15,7 @@ export const PUBLIC_CONFIG = Object.freeze({
         BEGRIFF: 'begriff',
         IMPRESSUM: 'impressum'
     },
-    ENTRIES_SHOWN_IN_FEED: 2,
+    ENTRIES_SHOWN_IN_FEED: 10,
     STYLES: {
         FEED: {
             IMAGE_MAX_WIDTH_LOW: 420,

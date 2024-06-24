@@ -78,9 +78,9 @@ export default function SearchPage() {
                 <Masonry
                     className="masonry"
                     items={feed}
-                    render={(it, ind) => (
+                    render={(it) => (
                         <FeedItem
-                            position={ind}
+                            position={111}
                             key={it.canonical}
                             contentItem={it}
                             showCatLink={true}

@@ -6,6 +6,10 @@ import { dbGetContentList, dbGetContentListPaginated, dbPutContentBulk, dbUpdate
 import { NS_DDB_INDEX_KEYS } from "~/config/backend.server";
 import { checkIfDataIsCurrent } from "./forLoaderUtils.server";
 
+
+/**
+ * top level data handler for loaders
+ */
 export const handleDataFeedRequest = async ({
     requestedContentTypes,
     offset,

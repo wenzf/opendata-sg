@@ -24,7 +24,7 @@ export const BACKEND_CONFIG = Object.freeze({
     DDB: {
         INDEX_PK_SK: { pk: 'IDX', sk: 1 }
     },
-    DATA_UPDATE_INTERVAL_TIME_IN_MS: 60 * 1000 * 6
+    DATA_UPDATE_INTERVAL_TIME_IN_MS: 60 * 1000 * 60 * 6
 })
 
 

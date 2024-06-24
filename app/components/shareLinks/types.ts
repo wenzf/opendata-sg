@@ -1,1 +1,0 @@
-export type SocialNetworks =  "mastadon" | "email" | "facebook" | "github" | "hatena" | "instagram" | "instapaper" | "line" | "linkedin" | "livejournal" | "mailru" | "pinterest" | "pocket" | "reddit" | "spotify" | "tumblr" | "twitter" | "viber" | "weibo" | "whatsapp" | "telegram" | "vk"

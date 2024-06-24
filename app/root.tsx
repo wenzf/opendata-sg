@@ -1,5 +1,7 @@
 import { cssBundleHref } from "@remix-run/css-bundle";
-import type { LinksFunction, LoaderFunction } from "@remix-run/node";
+import type { LinksFunction,
+ //  LoaderFunction 
+  } from "@remix-run/node";
 import {
   Links,
   LiveReload,
@@ -7,12 +9,12 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-  json,
+ // json,
 //  useLoaderData,
 } from "@remix-run/react";
 import stylesRoot from './styles/index.css';
 import { HeaderComp } from "./components/forSite/HeaderComp";
-import { dbScanMain } from "./serverOnly/dynamoDB/dbmain.server";
+// import { dbScanMain } from "./serverOnly/dynamoDB/dbmain.server";
 import FooterComp from "./components/forSite/FooterComp";
 import { useContext, useEffect, useState } from "react";
 import { Theme } from "./types";
@@ -25,13 +27,13 @@ export const links: LinksFunction = () => [
   { rel: "stylesheet", href: stylesRoot }
 ];
 
-
+/*
 export const loader: LoaderFunction = async () => {
-  const scan = await dbScanMain()
+   const scan = await dbScanMain()
 
-  return json({ scan })
+   return json({ scan })
 }
-
+*/
 
 export default function App() {
 //  const loaderDataR = useLoaderData<typeof loader>()

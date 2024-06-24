@@ -6,6 +6,9 @@ import FullScreenIconSVG from "~/resources/icons/FullScreenIconSVG";
 import { ImageHTMLProps } from "~/types"
 
 
+/**
+ * corrects duplicate file extentions
+ */
 function replaceAfterExtension(dirtyURL: string): string {
     const extensions = [".jpg", ".png"];
     for (const ext of extensions) {
@@ -18,6 +21,9 @@ function replaceAfterExtension(dirtyURL: string): string {
 }
 
 
+/**
+ *  image markup for previews and articles
+ */
 export const ImageHTML = ({
     image,
     use_case,

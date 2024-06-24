@@ -20,6 +20,10 @@ import WhatsAppIconSVG from "~/resources/icons/WhatsAppIconSVG";
 import TelegramIconSVG from "~/resources/icons/TelegramIconSVG";
 import LinkedinIconSVG from "~/resources/icons/LinkedinIconSVG";
 
+
+/**
+ * article view
+ */
 export default function ContentItem({ contentItem }: {
     contentItem: ContentItemPublic
 }) {
