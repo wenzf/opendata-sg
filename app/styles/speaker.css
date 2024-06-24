@@ -1,0 +1,36 @@
+.speaker_frame {
+  min-height: 44px;
+  padding: 0.5rem 0;
+}
+
+.speaker_inner {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+  position: relative;
+}
+
+.speaker_options {
+  position: absolute;
+
+  top: 48px;
+  display: flex;
+  flex-direction: column;
+  background: var(--gray-2);
+  padding: 0.5rem;
+  gap: 1rem;
+  z-index: 3;
+  border: 1px solid var(--gray-7);
+}
+
+.speaker_options > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  background: var(--gray-3);
+  padding: 0.5rem;
+}
+
+.speaker_options label {
+  font-weight: 700;
+}

@@ -1,0 +1,37 @@
+{
+  "content_category": {
+    "sing": {
+      "KTME": "Mitteilung Kanton",
+      "STME": "Mitteilung Stadt",
+      "STPO": "Polizei Stadt",
+      "KTVE": "Vernehmlassung Kanton"
+    },
+    "plu": {
+      "KTME": "Mitteilungen Kanton",
+      "STME": "Mitteilungen Stadt",
+      "STPO": "Polizei Stadt",
+      "KTVE": "Vernehmlassungen Kanton"
+    }
+  },
+  "nav": {
+    "Kanton": "Kanton",
+    "Stadt": "Stadt",
+    "Mitteilungen": "Mitteilungen",
+    "Vernehmlassungen": "Vernehmlassungen",
+    "Polizei": "Polizei",
+    "Home": "Startseite",
+    "Seite": "Seite",
+    "Artikel": "Artikel",
+    "Suche": "Suche",
+    "StGallen": "St. Gallen",
+    "Begriff": "Begriff"
+  },
+  "source": {
+    "ST": "Stadtverwaltung St.Gallen",
+    "KT": "Kanton St.Gallen",
+    "ST_URL": "https://daten.stadt.sg.ch/pages/home0/",
+    "KT_URL": "https://www.sg.ch/",
+    "KT_API_URL": "https://daten.sg.ch/explore/dataset/newsfeed-medienmitteilungen-kanton-stgallen/api/",
+    "ST_API_URL": "https://daten.stadt.sg.ch/explore/dataset/newsfeed-stadtverwaltung-stgallen/api/"
+  }
+}

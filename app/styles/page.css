@@ -1,0 +1,18 @@
+.page_feed {
+  max-width: 1240px;
+  margin: auto;
+  padding: 0.5rem;
+}
+
+.page_feed .title_frame {
+
+}
+
+.page_feed h1 {
+  font-size: 1.5rem;
+  color: var(--gray-12);
+}
+
+.masonry {
+  padding-top: 2rem;
+}

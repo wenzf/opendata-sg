@@ -1,0 +1,137 @@
+.page_article {
+  max-width: 512px;
+  margin: auto;
+  padding: 0.5rem;
+  background-color: var(--gray-2);
+  margin-bottom: 2rem;
+}
+
+.page_article figure {
+  margin: -0.5rem;
+}
+
+.page_article figcaption {
+  padding: 0.5rem;
+  font-size: 1rem;
+  color: var(--gray-11);
+  background-color: var(--gray-1);
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--gray-4);
+}
+
+.page_article .page_content {
+  font-size: 1.125rem;
+}
+.page_article .page_content p {
+  padding-top: 0.5rem;
+}
+
+.page_article h1 {
+  font-size: 1.5rem;
+  padding-top: 1rem;
+  padding-bottom: 0.75rem;
+}
+
+.page_article .page_content h2 {
+  padding-top: 1.125rem;
+  padding-bottom: 0.125rem;
+  font-size: 1.25rem;
+}
+
+.page_article .date {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  font-size: 0.925rem;
+  display: block;
+  text-align: right;
+}
+
+.page_article .lead {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  font-weight: 700;
+  font-size: 1.125rem;
+  line-height: 1.4;
+  color: var(--gray-11);
+}
+
+.page_content {
+  line-height: 1.4;
+}
+
+.article_footer {
+  margin-top: 3rem;
+  background-color: var(--gray-2);
+  color: var(--gray-12);
+}
+
+.article_source_block {
+  border-top: 1px solid var(--green-10);
+  padding: 0.5rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  display: flex;
+}
+
+.article_source_block ul {
+  margin: 0;
+}
+
+.page_article .page_content a {
+  color: var(--green-11);
+}
+
+.page_article .page_content a:hover {
+  color: var(--green-12);
+}
+
+.page_article .page_content a:focus {
+  box-shadow: 0px 0px 0px 2px var(--green-11);
+}
+
+.counter_block {
+  border-top: 1px solid var(--green-10);
+  border-bottom: 1px solid var(--green-10);
+  padding: 0.5rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  display: flex;
+  gap: 1rem;
+}
+
+@media print {
+  .lead,
+  .page_article,
+  body {
+    background-color: #fff!important;
+    color: #000!important;
+  }
+
+  figure figcaption>button,
+  footer,
+  .article_footer,
+  .speaker_frame,
+  header {
+    display: none!important;
+  }
+
+  .cat_link {
+    background-color: #fff;
+    color: #000;
+    justify-content: flex-end;
+  }
+}
+
+
+.shares {
+  padding-top: 1rem;
+  padding-bottom: 0.5rem;
+  display: flex;
+  gap: 4px;
+  justify-content: flex-end;
+}
+
+.shares button {
+  border-radius: 4px;
+}

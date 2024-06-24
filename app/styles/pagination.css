@@ -1,0 +1,35 @@
+.pagination {
+  max-width: 768px;
+  margin: auto;
+  padding: 2rem 0;
+}
+
+.pagination .links {
+  display: flex;
+  gap: 4px;
+}
+
+.pagination .links .scroll_links {
+  max-width: 100%;
+  overflow-x: scroll;
+  display: flex;
+  gap: 4px;
+  scrollbar-color: var(--green-9) var(--gray-6);
+  scrollbar-width: thin;
+}
+
+.pagination .links a {
+  color: var(--gray-12);
+  min-height: 44px;
+  min-width: 44px;
+  text-decoration: none;
+  background-color: var(--gray-3);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pagination a.pag_fb {
+  min-width: unset;
+  padding: 0.5rem;
+}

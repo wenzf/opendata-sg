@@ -1,0 +1,54 @@
+
+.cat_link {
+    text-decoration: none;
+    display: inline-flex;
+    padding: 0.125rem;
+    justify-content: center;
+    width: 100%;
+    font-weight: 700;
+    border:  3px solid transparent;
+    color: var(--gray-1);
+  }
+  
+  .cat_link.stme {
+    background-color: var(--orange-12);
+
+  }
+  .cat_link.stme:focus,
+  .cat_link.stme:hover {
+    background-color: var(--orange-11);
+  }
+  
+  .cat_link.stpo {
+    background-color: var(--tomato-12);
+
+  }
+  
+  .cat_link.stpo:focus,
+  .cat_link.stpo:hover {
+    background-color: var(--tomato-11);
+  }
+  
+  .cat_link.ktme {
+    background-color: var(--amber-12);
+
+  }
+  
+  .cat_link.ktme:focus,
+  .cat_link.ktme:hover {
+    background-color: var(--amber-11);
+  }
+  
+  .cat_link.ktve {
+    background-color: var(--brown-12);
+
+  }
+  .cat_link.ktve:focus,
+  .cat_link.ktve:hover {
+    background-color: var(--brown-11);
+  }
+  
+  .cat_link:focus {
+    border:  3px solid var(--gray-12);
+  }
+  

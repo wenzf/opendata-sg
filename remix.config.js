@@ -7,4 +7,5 @@ export default {
   // appDirectory: "app",
   // assetsBuildDirectory: "public/build",
   serverModuleFormat: "esm",
+ serverDependenciesToBundle: ["react-share-lite"]
 };
