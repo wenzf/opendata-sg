@@ -21,12 +21,11 @@ The focus is on low costs for the technical infrastructure, user-friendliness fo
 ## Key components
 
 | name | file | function | noteworthy dependencies | 
-
-|`dataAPI`| [/app/serverOnly/dataAPI/dataAPI.server.ts](./app/serverOnly/dataAPI/dataAPI.server.ts) | fetching data from API | - [dataAPIConfigConstructor](./app/serverOnly/dataAPI/dataAPIConfigConstructor.server.ts) |
+|`dataAPI`| [/app/serverOnly/dataAPI/dataAPI.server.ts](./app/serverOnly/dataAPI/dataAPI.server.ts) | fetching data from API | [dataAPIConfigConstructor](./app/serverOnly/dataAPI/dataAPIConfigConstructor.server.ts) |
 | *database* | [/app/serverOnly/dynamoDB/dbmain.server.ts](./app/serverOnly/dynamoDB/dbmain.server.ts) | interactions with DynamoDB | |
-| `extractAndModifyTextContent` | [/app/serverOnly/dataAPI/markupUtils.server.ts](./app/serverOnly/dataAPI/markupUtils.server.ts) |re-format text content: - extract article lead (used for *meta description*) \n - replacing subtitles formatted in `<b>` with `<h2>` tags | - [linkdom](https://github.com/linkdom/linkdom) - [sanitize-html](https://github.com/apostrophecms/sanitize-html)|
+| `extractAndModifyTextContent` | [/app/serverOnly/dataAPI/markupUtils.server.ts](./app/serverOnly/dataAPI/markupUtils.server.ts) |re-format text content: extract article lead (used for *meta description*), replace subtitles formatted in `<b>` with `<h2>` tags |  [linkdom](https://github.com/linkdom/linkdom), [sanitize-html](https://github.com/apostrophecms/sanitize-html)|
 |`prettyMarkup` | [./app/serverOnly/dataAPI/prettyMarkup.server.ts](./app/serverOnly/dataAPI/prettyMarkup.server.ts) | convert article to the internal datastructure by configuration ||
-|`handleDataFeedRequest`| [/app/serverOnly/forLoader/handleDataFeedRequest.server.ts](./app/serverOnly/forLoader/handleDataFeedRequest.server.ts) | data reqeust by route params \n - check for last update - fetch data from API - store new data | - `extractAndModifyTextContent` - `prettyMarkup` - `dataAPI` - *database* |
+|`handleDataFeedRequest`| [/app/serverOnly/forLoader/handleDataFeedRequest.server.ts](./app/serverOnly/forLoader/handleDataFeedRequest.server.ts) | data reqeust by route params: check for last update, fetch data from API, store new data | `extractAndModifyTextContent`,  `prettyMarkup`,  `dataAPI`,  *database* |
 
 
 ## Keeping database in sync with data from APIs
