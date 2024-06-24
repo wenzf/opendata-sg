@@ -21,7 +21,7 @@ The focus is on low costs for the technical infrastructure, user-friendliness fo
 ## Key components
 
 |name|file|function|noteworthy dependencies|
-| --- | --- | --- | --- | --- |
+|---|---|---|---|---|
 |`dataAPI`|[/app/serverOnly/dataAPI/dataAPI.server.ts](./app/serverOnly/dataAPI/dataAPI.server.ts)|fetching data from API|[dataAPIConfigConstructor](./app/serverOnly/dataAPI/dataAPIConfigConstructor.server.ts)|
 |*database*|[/app/serverOnly/dynamoDB/dbmain.server.ts](./app/serverOnly/dynamoDB/dbmain.server.ts)|interactions with DynamoDB|--|
 |`extractAndModifyTextContent`|[/app/serverOnly/dataAPI/markupUtils.server.ts](./app/serverOnly/dataAPI/markupUtils.server.ts)|re-format text content: extract article lead (used for *meta description*), replace subtitles formatted in `<b>` with `<h2>` tags|[linkdom](https://github.com/linkdom/linkdom), [sanitize-html](https://github.com/apostrophecms/sanitize-html)|
