@@ -100,29 +100,6 @@
   gap: 1rem;
 }
 
-@media print {
-  .lead,
-  .page_article,
-  body {
-    background-color: #fff !important;
-    color: #000 !important;
-  }
-
-  figure figcaption > button,
-  footer,
-  .article_footer,
-  .speaker_frame,
-  header {
-    display: none !important;
-  }
-
-  .cat_link {
-    background-color: #fff;
-    color: #000;
-    justify-content: flex-end;
-  }
-}
-
 .shares {
   padding-top: 1rem;
   padding-bottom: 0.5rem;
@@ -145,4 +122,27 @@
   gap: 0.5rem;
   justify-content: flex-end;
   position: relative;
+}
+
+@media print {
+  .lead,
+  .page_article,
+  body {
+    background-color: #fff !important;
+    color: #000 !important;
+  }
+
+  figure figcaption > button,
+  footer,
+  .article_footer,
+  .printer_frame,
+  header {
+    display: none !important;
+  }
+
+  .cat_link {
+    background-color: #fff;
+    color: #000;
+    justify-content: flex-end;
+  }
 }

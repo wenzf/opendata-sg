@@ -1,7 +1,5 @@
 import { cssBundleHref } from "@remix-run/css-bundle";
-import type { LinksFunction,
- //  LoaderFunction 
-  } from "@remix-run/node";
+import type { LinksFunction} from "@remix-run/node";
 import {
   Links,
   LiveReload,
@@ -9,12 +7,9 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
- // json,
-//  useLoaderData,
 } from "@remix-run/react";
 import stylesRoot from './styles/index.css';
 import { HeaderComp } from "./components/forSite/HeaderComp";
-// import { dbScanMain } from "./serverOnly/dynamoDB/dbmain.server";
 import FooterComp from "./components/forSite/FooterComp";
 import { useContext, useEffect, useState } from "react";
 import { Theme } from "./types";
@@ -27,21 +22,10 @@ export const links: LinksFunction = () => [
   { rel: "stylesheet", href: stylesRoot }
 ];
 
-/*
-export const loader: LoaderFunction = async () => {
-   const scan = await dbScanMain()
-
-   return json({ scan })
-}
-*/
-
 export default function App() {
-//  const loaderDataR = useLoaderData<typeof loader>()
   const [theme, setTheme] = useState<Theme>('')
   const [prefsDarkMode, setPrefsDarkmode] = useState<boolean>(false)
   const cspNonce = useContext(NonceContext);
-
- // console.log({ loaderDataR })
 
   useEffect(() => {
     if (typeof window === "object") {
@@ -69,7 +53,7 @@ export default function App() {
 
   return (
     <html lang="de-CH">
-      <head  itemScope itemType="https://schema.org/SpeakableSpecification">
+      <head itemScope itemType="https://schema.org/SpeakableSpecification">
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="preload" as="font" href={`${rootURL}/_static/fonts/Lato-Regular.woff2`} type="font/woff2" crossOrigin="anonymous" />
@@ -78,14 +62,16 @@ export default function App() {
         <link rel="apple-touch-icon" sizes="180x180" href={`${rootURL}/_static/icons/apple-touch-icon.png`} />
         <link rel="icon" type="image/png" sizes="32x32" href={`${rootURL}/_static/icons/favicon-32x32.png`} />
         <link rel="icon" type="image/png" sizes="16x16" href={`${rootURL}/_static/icons/favicon-16x16.png`} />
+        <meta name="theme-color" content="#008334" />
         <link rel="manifest" href={`${rootURL}/_static/site.webmanifest`} />
         <meta name="robots" content="max-image-preview:large" />
         <meta itemProp="cssSelector" content=".sp" />
+
         <Meta />
         <Links />
       </head>
       <body className={theme} itemScope itemType="https://schema.org/WebSite">
-      <meta itemProp="url" content={PUBLIC_CONFIG.DOMAIN_NAME}/>
+        <meta itemProp="url" content={PUBLIC_CONFIG.DOMAIN_NAME} />
         <HeaderComp prefsDarkmode={prefsDarkMode} theme={theme} themeSetter={setTheme} />
         <Outlet />
         <FooterComp />

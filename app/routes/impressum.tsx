@@ -1,12 +1,12 @@
 import { MetaFunction } from "@remix-run/node"
 import { Link } from "@remix-run/react"
 import { PUBLIC_CONFIG } from "~/config"
+import GithubIconSVG from "~/resources/icons/GithubIconSVG"
 import texts from "~/texts"
 
 const { DEFAULT_OG_IMAGE, DOMAIN_NAME, ROUTE_FRAGMENTS: { IMPRESSUM } } = PUBLIC_CONFIG
 const {
-    metasAndTitles: { impressum },
-    labels: { source: { ST, KT, KT_API_URL, ST_API_URL } }
+    metasAndTitles: { impressum }
 } = texts
 
 
@@ -36,7 +36,7 @@ export default function Impressum() {
 
             <div className="page_content sp">
                 <p>OpenData St. Gallen ist ein privates Open Data und Open Source Projekt. Texte und Bilder der Medienmitteilungen stammen von Stadt und Kanton St. Gallen, welche die Daten zur freien Verfügung stellen. Der Quellcode der Webseite ist offen.</p>
-                <p>Öffentliche Mitteilungen sollen Interessierten in benutzerfreundlichen Form zur Verfügung gestellt werden. Entwickler können sich am Quellcode orientieren, um Probleme zu lösen, die sich in Zusammenhang mit ähnlichen Projekten ergeben können.</p>
+                <p>Öffentliche Mitteilungen sollen Interessierten in benutzerfreundlicher Form zur Verfügung gestellt werden. Entwickler können sich am Quellcode orientieren, um Probleme zu lösen, die sich in Zusammenhang mit ähnlichen Projekten ergeben können.</p>
                 <p>Die Webseite verwendet keine Tracking-Tools.</p>
 
 
@@ -45,18 +45,28 @@ export default function Impressum() {
                         Daten
                         <ul >
                             <li>
-                                <Link to={KT_API_URL}>
-                                    API {KT}
+                                <Link to="https://opendata.swiss/de/dataset/newsfeed-medienmitteilungen-stadtverwaltung-st-gallen">
+                                     Medienmitteilungen Stadtverwaltung St.Gallen
                                 </Link>
                             </li>
                             <li>
-                                <Link to={ST_API_URL}>
-                                    API {ST}
+                                <Link to="https://opendata.swiss/de/dataset/newsfeed-vernehmlassungen-kanton-st-gallen">
+                                     Vernehmlassungen Kanton St.Gallen
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="https://opendata.swiss/de/dataset/newsfeed-medienmitteilungen-kanton-st-gallen">
+                                     Medienmitteilungen Kanton St.Gallen
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="https://opendata.swiss/de/dataset/newsfeed-medienmitteilungen-der-stadtpolizei-st-gallen">
+                                     Medienmitteilungen der Stadtpolizei St.Gallen
                                 </Link>
                             </li>
                             <li>
                                 <Link to="https://opendata.swiss">
-                                    Opendata.swiss
+                                    opendata.swiss
                                 </Link>
                             </li>
 
@@ -68,8 +78,10 @@ export default function Impressum() {
                         <ul >
 
                             <li>
+                                <GithubIconSVG aria-label="Github icon" />
+                                {' '}
                                 <Link to="https://github.com/wenzf/opendata-sg">
-                                    Source Code
+                                    Code
                                 </Link>
                             </li>
 
@@ -89,7 +101,7 @@ export default function Impressum() {
                         </ul>
                     </div>
                 </div>
-{/**
+                {/**
  *                <picture className="page_image" style={{ padding: '4rem' }}>
                     <img src="/_static/icons/android-chrome-512x512.png" width={512} height={512} alt="Medienmitteilungen St. Gallen Logo" />
                 </picture> 
