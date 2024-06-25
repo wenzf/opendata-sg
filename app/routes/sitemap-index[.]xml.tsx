@@ -8,7 +8,7 @@ export const loader: LoaderFunction = () => {
     const sitemapArticles = `<sitemap><loc>${DOMAIN_NAME}/sitemap-articles.xml</loc></sitemap>`
     const sitemapNews = `<sitemap><loc>${DOMAIN_NAME}/sitemap-news.xml</loc></sitemap>`
     const siteMapSet = sitemapPages + sitemapArticles + sitemapNews
-    const markup = `<?xml version="1.0" encoding="UTF-8"?><sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><sitemap><loc>${DOMAIN_NAME}/sitemap-pages.xml</loc></sitemap>${siteMapSet}</sitemapindex>`;
+    const markup = `<?xml version="1.0" encoding="UTF-8"?><sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${siteMapSet}</sitemapindex>`;
 
     return new Response(markup, {
         status: 200,

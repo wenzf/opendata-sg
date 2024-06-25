@@ -66,6 +66,7 @@ export default function App() {
         <link rel="manifest" href={`${rootURL}/_static/site.webmanifest`} />
         <meta name="robots" content="max-image-preview:large" />
         <meta itemProp="cssSelector" content=".sp" />
+        <meta name="msvalidate.01" content="6DCCF2846BD9A91B5A8764CF0F5C1E76" />
 
         <Meta />
         <Links />

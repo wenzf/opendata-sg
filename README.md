@@ -1,9 +1,9 @@
 # OpenData SG
 
-**Newssite prototype for media releases**
+**News site prototype for media releases**
 
 - [odsg.ch](https://odsg.ch)
-- A open data and web experiment using media releases of St. Gallen (Switzerland). Text content and images come from publicly accessible Rest APIs. Initially, the text content of the releases is formatted as HTML, it's partially reformatted to a more suitable structure. The data is then stored in a database in order to improve the loading speed of the articles and because some APIs limit the number of daily requests.
+- A open data and web experiment using media releases of St. Gallen, Switzerland. Text content and images come from publicly accessible Rest APIs. Initially, the text content of the releases is formatted as HTML, it's partially reformatted to a more suitable structure and stored in a database in order to improve the loading speed of the articles and because some APIs limit the number of daily requests.
 - The focus is on quick development, low hostig costs, user-friendliness for visitors, web standards for accessibility and that content can be easily indexed by search engines.
 
 
@@ -83,6 +83,6 @@ The project uses the a standard template for development and deployment. For dev
 - Are server functions on Github set (`AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`)?
 - Are AWS access keys set correctly?
 - Did you modify the project and see hydration errors in the browser console? This indicates that the server side markup is not identical with the client side rendered version. Reasons can be incorrect HTML markup which is corrected client side and therefore doesn't match with the backend rendered version. Another possibility is formatted timestamps without defined timezones. In such cases the markup from the server would use server time which might not match with client time, leading to different markups.
-- Error: 500 after deployment? This might be due to an issue in the deployment pipeline. Delete `.cache`, `public/build`, all files in `server/*` run `npm run build` and deploy agan.
+- Error: 500 after deployment? This might be due to an issue in the deployment pipeline. Delete `.cache`, `public/build`, all files in `server/*` run `npm run build` and deploy again with `npx arc deploy --production` or `npx arc deploy --staging`.
 
 
