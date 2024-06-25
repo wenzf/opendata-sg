@@ -3,7 +3,7 @@
 **Newssite prototype for media releases**
 
 - [odsg.ch](https://odsg.ch)
-- A open data web experiment using media releases from the Canton of St. Gallen in Switzerland. Text content and images come from publicly accessible Rest APIs. Initially, the text content of the releases is formatted as HTML, it's partially reformatted. The data is then stored in a database in order to improve the loading speed of the articles and because some APIs limit the number of daily requests. 
+- A open data and web experiment using media releases of St. Gallen (Switzerland). Text content and images come from publicly accessible Rest APIs. Initially, the text content of the releases is formatted as HTML, it's partially reformatted to a more suitable structure. The data is then stored in a database in order to improve the loading speed of the articles and because some APIs limit the number of daily requests.
 - The focus is on quick development, low hostig costs, user-friendliness for visitors, web standards for accessibility and that content can be easily indexed by search engines.
 
 
@@ -29,13 +29,13 @@ The canton and the city of St. Gallen publish press releases on separate platfor
 
 ## Key components
 
-|name|file|           function        |noteworthy dependencies|
+| name | file |           function        | noteworthy dependencies |
 |---|---|------------------------------------------------------------------------------------|---|
 |`dataAPI`|[dataAPI.server.ts](./app/serverOnly/dataAPI/dataAPI.server.ts)| fetching data from API |[dataAPIConfigConstructor](./app/serverOnly/dataAPI/dataAPIConfigConstructor.server.ts)|
-|*database*|[dbmain.server.ts](./app/serverOnly/dynamoDB/dbmain.server.ts)| interactions with DynamoDB ||
+|*database calls*|[dbmain.server.ts](./app/serverOnly/dynamoDB/dbmain.server.ts)| interactions with DynamoDB ||
 |`extractAndModifyTextContent`|[markupUtils.server.ts](./app/serverOnly/dataAPI/markupUtils.server.ts)| re-format text content: extract article lead (used for *meta description*), replace subtitles formatted in `<b>` with `<h2>` tags |[linkdom](https://github.com/linkdom/linkdom), [sanitize-html](https://github.com/apostrophecms/sanitize-html)|
 |`prettyMarkup`|[prettyMarkup.server.ts](./app/serverOnly/dataAPI/prettyMarkup.server.ts)| convert article to the internal datastructure by configuration ||
-|`handleDataFeedRequest`|[handleDataFeedRequest.server.ts](./app/serverOnly/forLoader/handleDataFeedRequest.server.ts)| data reqeust by route params: check for last update, fetch data from API, store new data |`extractAndModifyTextContent`,  `prettyMarkup`,  `dataAPI`,  *database*|
+|`handleDataFeedRequest`|[handleDataFeedRequest.server.ts](./app/serverOnly/forLoader/handleDataFeedRequest.server.ts)| data reqeust by route params: check for last update, fetch data from API, store new data |`extractAndModifyTextContent`,  `prettyMarkup`,  `dataAPI`,  *database calls*|
 
 
 
@@ -82,7 +82,7 @@ The project uses the a standard template for development and deployment. For dev
 - Are environment variables set? See above.
 - Are server functions on Github set (`AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`)?
 - Are AWS access keys set correctly?
-- Did you modify the project and see hydration errors in the browser console? This indicates that the server side markup is not identical with the client side rendered version. Reasons for is is often incorrect HTML markup which is corrected client side and therefore doesn't match with the backend rendered version. Another possibility is formatted timestamps without defined timezones. In such cases the markup from the server would use server time which might not match with client time, leading to different markups.
+- Did you modify the project and see hydration errors in the browser console? This indicates that the server side markup is not identical with the client side rendered version. Reasons can be incorrect HTML markup which is corrected client side and therefore doesn't match with the backend rendered version. Another possibility is formatted timestamps without defined timezones. In such cases the markup from the server would use server time which might not match with client time, leading to different markups.
 - Error: 500 after deployment? This might be due to an issue in the deployment pipeline. Delete `.cache`, `public/build`, all files in `server/*` run `npm run build` and deploy agan.
 
 

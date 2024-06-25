@@ -11,3 +11,4 @@ sam.json
 sam.yaml
 .env
 /.dev
+package-lock.json
