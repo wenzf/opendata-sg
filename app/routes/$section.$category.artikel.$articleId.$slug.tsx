@@ -36,12 +36,13 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
 export const loader: LoaderFunction = async ({ params, request }) => {
     const { articleId } = params
     if (!articleId) return json({}, { status: 404 })
+    const ua = request.headers.get('user-agent')
     const sk = parseInt(articleId, 32)
     const { requestedContentTypes } = contentTypesAndItemsPerRequestByParams(params)
     const res = await dbGetContent({ pk: requestedContentTypes[0], sk })
     if (res?.canonical) {
         const path = new URL(request.url).pathname
-        const isBot = isbot()
+        const isBot = isbot(ua)
         await dbUpdateContentItemCounter({ pk: requestedContentTypes[0], sk, human: !isBot })
         if (!isBot) {
             res.views_human = res.views_human + 1

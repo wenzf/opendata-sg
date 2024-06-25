@@ -4,10 +4,25 @@
   padding: 0.5rem;
 }
 
+.page_feed.forbot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
+
 
 .page_feed h1 {
   font-size: 1.5rem;
   color: var(--gray-12);
+
+}
+
+.forbot .title_frame {
+  width: 100%;
+ 
+  padding-bottom: 2rem;
 }
 
 .masonry {

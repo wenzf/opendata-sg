@@ -1,5 +1,6 @@
 import { LoaderFunction, MetaFunction, json } from "@remix-run/node"
 import { useLoaderData, useParams } from "@remix-run/react"
+import { isbot } from "isbot";
 import { Masonry } from "react-plock";
 import FeedItem from "~/components/forPages/FeedItem";
 import PaginationComp from "~/components/forPages/PaginationComp";
@@ -38,8 +39,10 @@ export const meta: MetaFunction = ({ params, location }) => {
 }
 
 
-export const loader: LoaderFunction = async ({ params }) => {
+export const loader: LoaderFunction = async ({ params, request }) => {
     const { pageNum } = params
+    const ua = request.headers.get('user-agent')
+    const isBot = isbot(ua)
     const contentTypesAndItemsPerRequest = contentTypesAndItemsPerRequestByParams(params)
     const { requestedContentTypes, itemsPerRequest } = contentTypesAndItemsPerRequest
     const offset = parseInt(pageNum ?? '0') * ENTRIES_SHOWN_IN_FEED
@@ -48,7 +51,7 @@ export const loader: LoaderFunction = async ({ params }) => {
         itemsPerRequest,
         offset
     })
-    return json(res)
+    return json({ ...res, isBot })
 }
 
 
@@ -56,26 +59,42 @@ export default function SectionRoute() {
     const params = useParams()
     const loaderData = useLoaderData<typeof loader>()
     const feed = prettyFeed(loaderData?.feed)
+    const isBot = loaderData?.isBot
     const { h1 } = textAndMetasForFeedRoutesByParams(params)
 
     return (
-        <main className="page_feed">
+        <main className={`page_feed${isBot ? ' forbot' : ''}`}>
             <div className="title_frame">
                 <h1 className="sp">{h1}</h1>
             </div>
-            <Masonry
-                className="masonry"
-                items={feed}
-                render={(it) => (
-                    <FeedItem
-                        position={111}
-                        key={it.canonical}
-                        contentItem={it}
-                        showCatLink={params?.category === undefined}
-                    />
-                )}
-                config={MASONRY_CONFIG}
-            />
+
+            {isBot ? (
+                <>
+                    {feed ? feed.map((it) => (
+                        <FeedItem
+                            position={111}
+                            key={it.canonical}
+                            contentItem={it}
+                            showCatLink={true}
+                        />
+                    )) : null}
+                </>
+            ) : (
+                <Masonry
+                    className="masonry"
+                    items={feed}
+                    render={(it) => (
+                        <FeedItem
+                            position={111}
+                            key={it.canonical}
+                            contentItem={it}
+                            showCatLink={true}
+                        />
+                    )}
+                    config={MASONRY_CONFIG}
+                />
+            )}
+
             <PaginationComp idx={loaderData.idx} params={params} />
         </main>
     )
