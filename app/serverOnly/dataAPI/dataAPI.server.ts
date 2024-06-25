@@ -45,10 +45,8 @@ const fetchAPI = async ({
         let path = endpoint + constructParams(params)
         if (offset) path += OFFSET + offset
         const res = await fetch(new URL(path))
-        console.log({ res })
         const toJson = await res.json();
         if (toJson) return toJson
-        console.log({ toJson })
         return null
     } catch (error: Error | unknown) {
         return null

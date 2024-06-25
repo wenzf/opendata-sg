@@ -96,14 +96,17 @@ export async function dbGetContentListForNewsSitemap({ pk }: {
     pk: ContentCategoryKeys
 }): Promise<ContentItemPublic[]> {
     const db = await arc.tables();
-    const nowPlusTwoDays = Date.now() + 172_800_000 // 2 days
+    const nowMinusTwoDays = Date.now() - 1000 * 60 * 60 * 24 * 2 // 2 days
+
     const res = await db.main.query({
-        FilterExpression: "published < :published",
+        FilterExpression: "published > :published",
         KeyConditionExpression: "pk = :pk",
-        ExpressionAttributeValues: { ":pk": pk, ":published": nowPlusTwoDays },
+        ExpressionAttributeValues: { ":pk": pk, ":published": nowMinusTwoDays },
         ScanIndexForward: false,
         ProjectionExpression: 'title, published, canonical',
     })
+
+
     if (res) return res.Items
     return res
 }
