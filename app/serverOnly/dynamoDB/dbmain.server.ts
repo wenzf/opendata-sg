@@ -220,7 +220,7 @@ export async function dbUpdateContentItemCounter({ pk, sk, human }: {
     try {
         const db = await arc.tables();
         const itemToUpdate = human ? 'views_human' : 'views_bot'
-        const res = db.main.update({
+        const res = await db.main.update({
             Key: { pk, sk },
             UpdateExpression: `SET ${itemToUpdate} = ${itemToUpdate} +:i`,
             ExpressionAttributeValues: { ":i": 1 }

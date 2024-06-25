@@ -1,8 +1,7 @@
 .preview {
-    background-color: var(--gray-3);
+  background-color: var(--gray-3);
 
-    overflow: hidden;
-
+  overflow: hidden;
 }
 
 .preview_inner {
@@ -41,8 +40,6 @@
 
 .preview_inner:hover {
   background-color: var(--gray-3);
-
-
 }
 
 .preview_inner:hover p {
@@ -58,7 +55,7 @@
 }
 
 .preview_inner:focus {
-  box-shadow:  0px 0px 0px 3px var(--gray-10);
+  box-shadow: 0px 0px 0px 3px var(--gray-10);
 }
 
 .preview.stpo .preview_inner:hover h2 {
@@ -76,4 +73,3 @@
 .preview.ktve .preview_inner:hover h2 {
   color: var(--brown-12);
 }
-

@@ -2,11 +2,7 @@
   --green-1: #fafefb;
   --green-2: #f4fbf5;
   --green-3: #e6f7e8;
-  --green-4: #d6f2d9;
-  --green-5: #c3eac8;
-  --green-6: #abe0b2;
-  --green-7: #8ad195;
-  --green-8: #56bd6c;
+
   --green-9: #008334;
   --green-10: #007526;
   --green-11: #008132;
@@ -52,11 +48,7 @@
     --green-1: #0a140c;
     --green-2: #111b12;
     --green-3: #142c18;
-    --green-4: #0a3d19;
-    --green-5: #0b4c1f;
-    --green-6: #0c5c25;
-    --green-7: #086d2c;
-    --green-8: #008031;
+
     --green-9: #008334;
     --green-10: #127231;
     --green-11: #6ad27e;
@@ -78,11 +70,7 @@
         --green-1: oklch(17.8% 0.022 148.4);
         --green-2: oklch(20.9% 0.022 148.4);
         --green-3: oklch(26.6% 0.047 148.4);
-        --green-4: oklch(31.9% 0.082 148.4);
-        --green-5: oklch(36.7% 0.097 148.4);
-        --green-6: oklch(41.6% 0.113 148.4);
-        --green-7: oklch(46.8% 0.131 148.4);
-        --green-8: oklch(52.4% 0.152 148.4);
+
         --green-9: oklch(53.2% 0.152 148.4);
         --green-10: oklch(48.5% 0.131 148.4);
         --green-11: oklch(78% 0.152 148.4);
@@ -109,11 +97,7 @@
   --green-1: #fafefb;
   --green-2: #f4fbf5;
   --green-3: #e6f7e8;
-  --green-4: #d6f2d9;
-  --green-5: #c3eac8;
-  --green-6: #abe0b2;
-  --green-7: #8ad195;
-  --green-8: #56bd6c;
+
   --green-9: #008334;
   --green-10: #007526;
   --green-11: #008132;
@@ -147,13 +131,10 @@
       --green-1: oklch(99.4% 0.006 148.4);
       --green-2: oklch(98.2% 0.011 148.4);
       --green-3: oklch(96.1% 0.027 148.4);
-      --green-4: oklch(93.4% 0.043 148.4);
-      --green-5: oklch(90.1% 0.062 148.4);
-      --green-6: oklch(85.8% 0.083 148.4);
-      --green-7: oklch(79.8% 0.11 148.4);
-      --green-8: oklch(71.6% 0.15 148.4);
+
       --green-9: oklch(53.2% 0.152 148.4);
       --green-10: oklch(48.5% 0.152 148.4);
+
       --green-11: oklch(52.7% 0.152 148.4);
       --green-12: oklch(32.6% 0.062 148.4);
 
@@ -190,11 +171,7 @@
   --green-1: #0a140c;
   --green-2: #111b12;
   --green-3: #142c18;
-  --green-4: #0a3d19;
-  --green-5: #0b4c1f;
-  --green-6: #0c5c25;
-  --green-7: #086d2c;
-  --green-8: #008031;
+
   --green-9: #008334;
   --green-10: #127231;
   --green-11: #6ad27e;
@@ -219,11 +196,7 @@
       --green-1: oklch(17.8% 0.022 148.4);
       --green-2: oklch(20.9% 0.022 148.4);
       --green-3: oklch(26.6% 0.047 148.4);
-      --green-4: oklch(31.9% 0.082 148.4);
-      --green-5: oklch(36.7% 0.097 148.4);
-      --green-6: oklch(41.6% 0.113 148.4);
-      --green-7: oklch(46.8% 0.131 148.4);
-      --green-8: oklch(52.4% 0.152 148.4);
+
       --green-9: oklch(53.2% 0.152 148.4);
       --green-10: oklch(48.5% 0.131 148.4);
       --green-11: oklch(78% 0.152 148.4);

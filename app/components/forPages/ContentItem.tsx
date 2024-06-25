@@ -13,12 +13,13 @@ import ContentCategoryLink from "../generics/ContentCategoryLink";
 import { ImageHTML } from "../generics/ImageHtml";
 import { NS_CONTENT_CATEGORY, PUBLIC_CONFIG } from "~/config";
 import texts from "~/texts";
-import SpeakAndPrint from "../generics/SpeakAndPrint";
 import EnvelopClosedIconSVG from "~/resources/icons/EnvelopClosedIconSVG";
 import FacebookIconSVG from "~/resources/icons/FacebookIconSVG";
 import WhatsAppIconSVG from "~/resources/icons/WhatsAppIconSVG";
 import TelegramIconSVG from "~/resources/icons/TelegramIconSVG";
 import LinkedinIconSVG from "~/resources/icons/LinkedinIconSVG";
+import PrintIconSVG from "~/resources/icons/PrintIconSVG";
+import { doPrint } from "~/clientOnly/misc.client";
 
 
 /**
@@ -58,7 +59,17 @@ export default function ContentItem({ contentItem }: {
             <time itemProp="datePublished" content={iso} dateTime={iso} className="date sp">
                 {readable}
             </time>
-            <SpeakAndPrint texts={` <h1>${title}</h1> \n  <p>${intro}</p>  \n ${body}`} />
+
+            <div className="printer_frame">
+                <div className="printer_inner">
+
+                    <button className='btn2' type='button' onClick={() => doPrint()}>
+                        <PrintIconSVG width={24} height={24} aria-label="Drucken" />
+                    </button>
+
+                </div>
+            </div>
+
             <meta itemProp="dateModified" content={iso} />
             <meta itemProp="isAccessibleForFree" content="TRUE" />
             <h1 className="sp" itemProp="headline">{title}</h1>

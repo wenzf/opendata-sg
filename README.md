@@ -4,9 +4,11 @@
 
 - [odsg.ch](https://odsg.ch)
 
-A full-stack open data web project with media releases from the Canton of St. Gallen in Switzerland. The text content comes from publicly accessible Rest APIs. The text content of the releases is formatted as HTML, the HTML is partially reformatted. The data is then stored in a database. This is done to improve the loading speed of the articles and because some APIs limit the number of daily accesses.
+A full-stack open data web project with media releases from the Canton of St. Gallen in Switzerland. The text content comes from publicly accessible Rest APIs. The text content of the releases is formatted as HTML, the HTML is partially reformatted. The data is then stored in a database. This is done to improve the loading speed of the articles and because some APIs limit the number of daily accesses. 
 
 The focus is on low costs for the technical infrastructure, user-friendliness for visitors, web standards for accessibility and that content can be easily indexed by search engines.
+
+
 
 ## Setup
 
@@ -14,20 +16,26 @@ The focus is on low costs for the technical infrastructure, user-friendliness fo
 - Deployed on AWS, using [Arc Template](https://github.com/remix-run/remix/tree/main/templates/classic-remix-compiler/arc), [DynamoDB](https://aws.amazon.com/dynamodb/)
 - Data from [opendata.swiss](https://opendata.swiss)
 
+
+
 ## APIs
 
 - [Kanton St. Gallen](https://daten.sg.ch/explore/dataset/newsfeed-medienmitteilungen-kanton-stgallen/api/)
 - [Stadt St. Gallen](https://daten.stadt.sg.ch/explore/dataset/newsfeed-stadtverwaltung-stgallen/api/)
 
+
+
 ## Key components
 
-| name                          | file                                                                                                                    | function                                                                                                                          | noteworthy dependencies                                                                                        |
-| ----------------------------- | ----------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `dataAPI`                     | [/app/serverOnly/dataAPI/dataAPI.server.ts](./app/serverOnly/dataAPI/dataAPI.server.ts)                                 | fetching data from API                                                                                                            | [dataAPIConfigConstructor](./app/serverOnly/dataAPI/dataAPIConfigConstructor.server.ts)                        |
-| _database_                    | [/app/serverOnly/dynamoDB/dbmain.server.ts](./app/serverOnly/dynamoDB/dbmain.server.ts)                                 | interactions with DynamoDB                                                                                                        |                                                                                                                |
-| `extractAndModifyTextContent` | [/app/serverOnly/dataAPI/markupUtils.server.ts](./app/serverOnly/dataAPI/markupUtils.server.ts)                         | re-format text content: extract article lead (used for _meta description_), replace subtitles formatted in `<b>` with `<h2>` tags | [linkdom](https://github.com/linkdom/linkdom), [sanitize-html](https://github.com/apostrophecms/sanitize-html) |
-| `prettyMarkup`                | [./app/serverOnly/dataAPI/prettyMarkup.server.ts](./app/serverOnly/dataAPI/prettyMarkup.server.ts)                      | convert article to the internal datastructure by configuration                                                                    |                                                                                                                |
-| `handleDataFeedRequest`       | [/app/serverOnly/forLoader/handleDataFeedRequest.server.ts](./app/serverOnly/forLoader/handleDataFeedRequest.server.ts) | data reqeust by route params: check for last update, fetch data from API, store new data                                          | `extractAndModifyTextContent`, `prettyMarkup`, `dataAPI`, _database_                                           |
+|name|file|function|noteworthy dependencies|
+|---|---|--------------------------------------------------------------|---|
+|`dataAPI`|[dataAPI.server.ts](./app/serverOnly/dataAPI/dataAPI.server.ts)|fetching data from API|[dataAPIConfigConstructor](./app/serverOnly/dataAPI/dataAPIConfigConstructor.server.ts)|
+|*database*|[dbmain.server.ts](./app/serverOnly/dynamoDB/dbmain.server.ts)|interactions with DynamoDB||
+|`extractAndModifyTextContent`|[markupUtils.server.ts](./app/serverOnly/dataAPI/markupUtils.server.ts)|re-format text content: extract article lead (used for *meta description*), replace subtitles formatted in `<b>` with `<h2>` tags|[linkdom](https://github.com/linkdom/linkdom), [sanitize-html](https://github.com/apostrophecms/sanitize-html)|
+|`prettyMarkup`|[prettyMarkup.server.ts](./app/serverOnly/dataAPI/prettyMarkup.server.ts)|convert article to the internal datastructure by configuration||
+|`handleDataFeedRequest`|[handleDataFeedRequest.server.ts](./app/serverOnly/forLoader/handleDataFeedRequest.server.ts)|data reqeust by route params: check for last update, fetch data from API, store new data|`extractAndModifyTextContent`,  `prettyMarkup`,  `dataAPI`,  *database*|
+
+
 
 ## Keeping database in sync with data from APIs
 
@@ -38,17 +46,19 @@ Search engines make several requests every day to websites that regularly have n
 - 3a: The data from the API from the previous step is converted into the internal data structure and saved in the database. The response is then sent to the client.
 - 3b: Content is retrieved from the database and sent to the client.
 
+
+
 ## Development and deployment
 
-Remix has several deploymet pipelines for different services or can be hostet on any node or node-like runtime. This respository uses AWS services since they offer a reasonable cost-benefit ratio for such projects.
+Remix has several deploymet pipelines for different services or can be hostet on any node or node-like runtime. This respository uses AWS services since they offer a reasonable cost-benefit ratio for such projects. 
 
 The project uses the a standard template for development and deployment. Just follow the guides.
-
 - [Install the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html)
 - [Arc template](https://github.com/remix-run/remix/tree/main/templates/classic-remix-compiler/arc)
 - [Arc quick start](https://arc.codes/docs/en/get-started/quickstart)
 - [Arc deployment](https://arc.codes/docs/en/reference/cli/deploy)
 - [Deployment on AWS with custom domain](https://arc.codes/docs/en/guides/domains/registrars/route53-and-cloudfront)
+
 
 ```sh
     $ npm run dev
@@ -71,3 +81,5 @@ The project uses the a standard template for development and deployment. Just fo
 - Did you set secrets for the server functions on Github (`AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`)?
 - Are AWS access keys set correctly?
 - Did you modify the project and see hydration errors in the browser console? This indicates that the server side markup is not identical with the client side rendered version. Reasons for is is often incorrect HTML markup which is corrected client side and therefore doesn't match with the backend rendered version. Another possibility is formatted timestamps without defined timezones. In such cases the markup from the server would use server time which might not match with client time, leading to different markups.
+
+

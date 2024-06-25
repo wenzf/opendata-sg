@@ -104,16 +104,16 @@
   .lead,
   .page_article,
   body {
-    background-color: #fff!important;
-    color: #000!important;
+    background-color: #fff !important;
+    color: #000 !important;
   }
 
-  figure figcaption>button,
+  figure figcaption > button,
   footer,
   .article_footer,
   .speaker_frame,
   header {
-    display: none!important;
+    display: none !important;
   }
 
   .cat_link {
@@ -122,7 +122,6 @@
     justify-content: flex-end;
   }
 }
-
 
 .shares {
   padding-top: 1rem;
@@ -134,4 +133,16 @@
 
 .shares button {
   border-radius: 4px;
+}
+
+.printer_frame {
+  min-height: 44px;
+  padding: 0.5rem 0;
+}
+
+.printer_inner {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+  position: relative;
 }

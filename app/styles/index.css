@@ -1,5 +1,6 @@
 @import './base.css';
 @import './colors.css';
+@import './keyframes.css';
 @import './header.css';
 @import './page.css';
 @import './generics.css';
@@ -10,5 +11,3 @@
 @import './contentItem.css';
 @import './radixCheckbox.css';
 @import './pagination.css';
-@import './keyframes.css';
-@import './speaker.css';
