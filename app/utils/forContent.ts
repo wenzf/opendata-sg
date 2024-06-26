@@ -29,8 +29,13 @@ export const contentCategoryBySearchLocationParam = (
 }
 
 
+
 const slugByTitle = (title: string): string => {
-    return encodeURIComponent(title.toLowerCase().replaceAll(' ', '-'))
+    const text = title.toLowerCase()
+    const allowedChars = new Set("abcdefghijklmnopqrstuvwxyz0123456789 äéöèéü ".split(""));
+    const clean = text.split("").filter((char) => allowedChars.has(char)).join("");
+    const slug = clean.replaceAll(' ', "-");
+    return encodeURIComponent(slug)
 }
 
 

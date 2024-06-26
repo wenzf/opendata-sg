@@ -3,13 +3,13 @@
 **News site prototype for media releases**
 
 - [odsg.ch](https://odsg.ch)
-- A open data and web experiment using media releases of St. Gallen, Switzerland. Text content and images come from publicly accessible Rest APIs. Initially, the text content of the releases is formatted as HTML, it's partially reformatted to a more suitable structure and stored in a database in order to improve the loading speed of the articles and because some APIs limit the number of daily requests.
+- A open data and web experiment using media releases of St. Gallen, Switzerland. Text content and images come from publicly accessible Rest APIs. Initially, the text content of the releases is formatted as HTML, it's structure is partially reformatted and stored in a database in order to improve the loading speed of the articles and because some APIs limit the number of daily requests.
 - The focus is on quick development, low hostig costs, user-friendliness for visitors, web standards for accessibility and that content can be easily indexed by search engines.
 
 
 ## Intial situation
 
-The canton and the city of St. Gallen publish press releases on separate platforms that are less optimized for search engines. The aim is to make those press releases accessible on one platform, to optimize them for search engines and to improve the loading speed. 
+The canton and the city of St. Gallen publish press releases on separate platforms. The aim is to make those press releases accessible on one platform, to optimize them for search engines and to improve the loading speed. 
 
 
 ## Setup

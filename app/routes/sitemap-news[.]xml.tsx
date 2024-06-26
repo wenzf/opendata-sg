@@ -18,7 +18,7 @@ export const loader: LoaderFunction = async () => {
     let urlSet = ''
     for (let i =0; i < allResFlat.length; i += 1) {
         const isoDate = isoTimeByUnixEpoch(allResFlat[i].published)
-        const oneEntry = `<url><loc>${encodeURI(DOMAIN_NAME + allResFlat[i].canonical)}</loc><news:news><news:publication><news:name>${SITE_NAME}</news:name><news:language>de</news:language></news:publication><news:publication_date>${isoDate}</news:publication_date><news:title>${allResFlat[i].title}</news:title></news:news></url>`
+        const oneEntry = `<url><loc>${DOMAIN_NAME + allResFlat[i].canonical}</loc><news:news><news:publication><news:name>${SITE_NAME}</news:name><news:language>de</news:language></news:publication><news:publication_date>${isoDate}</news:publication_date><news:title>${allResFlat[i].title}</news:title></news:news></url>`
         urlSet += oneEntry
     }
 

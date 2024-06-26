@@ -22,7 +22,7 @@ export const loader: LoaderFunction = async () => {
 
     let urlSet = ''
     for (let i = 0; i < allRoutes.length; i += 1) {
-        const oneEntry = `<url><loc>${encodeURI(DOMAIN_NAME + allRoutes[i])}</loc></url>`
+        const oneEntry = `<url><loc>${DOMAIN_NAME + allRoutes[i]}</loc></url>`
         urlSet += oneEntry
     }
 

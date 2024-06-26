@@ -18,7 +18,7 @@ export const loader: LoaderFunction = async () => {
     let urlSet = ''
     for (let i = 0; i < allResFlat.length; i += 1) {
         const isoDate = isoTimeByUnixEpoch(allResFlat[i].published)
-        const oneEntry = `<url><loc>${encodeURI(DOMAIN_NAME + allResFlat[i].canonical)}</loc><lastmod>${isoDate}</lastmod></url>`
+        const oneEntry = `<url><loc>${DOMAIN_NAME + allResFlat[i].canonical}</loc><lastmod>${isoDate}</lastmod></url>`
         urlSet += oneEntry
     }
     
