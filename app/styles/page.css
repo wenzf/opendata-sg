@@ -28,3 +28,11 @@
 .masonry {
   padding-top: 2rem;
 }
+
+.no_results {
+  font-size: 1.25rem;
+  background-color: var(--gray-2);
+  border: 1px solid var(--gray-6);
+  padding: 1rem;
+  text-align: center;
+}

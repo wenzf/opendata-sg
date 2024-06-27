@@ -105,6 +105,12 @@ export default function SearchPage() {
                             )}
                             config={MASONRY_CONFIG}
                         />)}
+
+                        {!feed?.length ? (
+                            <div className="no_results">
+                                Keine Suchergebnisse 
+                            </div>
+                        ) : null}
                 </>
             ) : null}
 

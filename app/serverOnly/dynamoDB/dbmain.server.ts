@@ -129,17 +129,46 @@ export async function dbGetContentListForCommonSitemap({ pk }: {
 }
 
 /**
- * bulk put content items
+ * bulk put (and update) content items
+ * checks if item is present: 
+ * - if true, overwrite all items except counters, in order to include recent
+ * content edits.
+ * - if false, create entry
+ * TODO: optimize with promise.all
  */
 export async function dbPutContentBulk(bulk: ContentItemInternal[]) {
     const db = await arc.tables();
     for (let i = 0; i < bulk.length; i += 1) {
+
         const oneItem = bulk[i]
-        const payload = {
-            ...oneItem,
-            pk: oneItem.content_category,
-            sk: oneItem.published
+
+        let payload = {}
+        /*
+             const payload = {
+                 ...oneItem,
+                 pk: oneItem.content_category,
+                 sk: oneItem.published
+             }
+     */
+        const possiblyPresent = await db.main.get({ pk: oneItem.content_category, sk: oneItem.published })
+
+        if (possiblyPresent && possiblyPresent?.views_human !== undefined && possiblyPresent?.views_bot !== undefined) {
+            payload = {
+                ...oneItem,
+                pk: oneItem.content_category,
+                sk: oneItem.published,
+                views_human: possiblyPresent.views_human,
+                views_bot: possiblyPresent.views_bot
+            }
+        } else {
+            payload = {
+                ...oneItem,
+                pk: oneItem.content_category,
+                sk: oneItem.published
+            }
         }
+
+
         await db.main.put(payload)
     }
     return 'ok'
