@@ -4,10 +4,15 @@ import { PUBLIC_CONFIG } from "~/config"
 import GithubIconSVG from "~/resources/icons/GithubIconSVG"
 import texts from "~/texts"
 
-const { DEFAULT_OG_IMAGE, DOMAIN_NAME, ROUTE_FRAGMENTS: { IMPRESSUM } } = PUBLIC_CONFIG
+const { DEFAULT_OG_IMAGE, DOMAIN_NAME, ROUTE_FRAGMENTS: { IMPRESSUM }, PAGE_HANDLES } = PUBLIC_CONFIG
 const {
-    metasAndTitles: { impressum }
+    metasAndTitles: { impressum }, 
 } = texts
+
+
+export const handle = {
+    page: PAGE_HANDLES.IMPRESSUM
+}
 
 
 export const meta: MetaFunction = () => {

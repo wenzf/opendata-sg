@@ -139,20 +139,12 @@ export async function dbGetContentListForCommonSitemap({ pk }: {
 export async function dbPutContentBulk(bulk: ContentItemInternal[]) {
     const db = await arc.tables();
     for (let i = 0; i < bulk.length; i += 1) {
-
         const oneItem = bulk[i]
-
         let payload = {}
-        /*
-             const payload = {
-                 ...oneItem,
-                 pk: oneItem.content_category,
-                 sk: oneItem.published
-             }
-     */
+             
         const possiblyPresent = await db.main.get({ pk: oneItem.content_category, sk: oneItem.published })
 
-        if (possiblyPresent && possiblyPresent?.views_human !== undefined && possiblyPresent?.views_bot !== undefined) {
+        if (possiblyPresent?.pk && possiblyPresent?.views_human !== undefined && possiblyPresent?.views_bot !== undefined) {
             payload = {
                 ...oneItem,
                 pk: oneItem.content_category,
@@ -167,7 +159,6 @@ export async function dbPutContentBulk(bulk: ContentItemInternal[]) {
                 sk: oneItem.published
             }
         }
-
 
         await db.main.put(payload)
     }
@@ -227,6 +218,8 @@ export async function dbUpdateIndex(
                 counter += 1
             }
         }
+
+
         UpdateExpression = UpdateExpression.slice(0, -2)
         const res = await db.main.update({
             Key: BACKEND_CONFIG.DDB.INDEX_PK_SK,
@@ -264,18 +257,17 @@ export async function dbUpdateContentItemCounter({ pk, sk, human }: {
 }
 
 
-/*
+
 // scan for dev
 export async function dbScanMain(startKey?: string) {
     let optional = {};
     if (startKey) optional = { ExclusiveStartKey: startKey }
     const db = await arc.tables();
     const dat = await db.main.scan({
-        Limit: 200,
-        //  ProjectionExpression: 'user_name, user_name_path',
+        Limit: 2000,
+          ProjectionExpression: 'title, published, content_category, pk, sk',
         ...optional,
 
     })
     return dat
 }
-*/

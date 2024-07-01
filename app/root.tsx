@@ -1,5 +1,6 @@
 import { cssBundleHref } from "@remix-run/css-bundle";
-import type { LinksFunction} from "@remix-run/node";
+import type { LinksFunction,
+  } from "@remix-run/node";
 import {
   Links,
   LiveReload,
@@ -16,11 +17,11 @@ import { Theme } from "./types";
 import { PUBLIC_CONFIG } from "./config";
 import { NonceContext } from "./utils/csp/NonceContext";
 
-
 export const links: LinksFunction = () => [
   ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
   { rel: "stylesheet", href: stylesRoot }
 ];
+
 
 export default function App() {
   const [theme, setTheme] = useState<Theme>('')

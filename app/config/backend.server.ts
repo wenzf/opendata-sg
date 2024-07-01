@@ -22,9 +22,11 @@ export const BACKEND_CONFIG = Object.freeze({
         }
     },
     DDB: {
-        INDEX_PK_SK: { pk: 'IDX', sk: 1 }
+        INDEX_PK_SK: { pk: 'IDX', sk: 1 },
+      //  LAST_RESET_PK_SK: { pk: 'IDX', sk: 2 }
     },
-    DATA_UPDATE_INTERVAL_TIME_IN_MS: 60 * 1000 * 60 * 6
+    DATA_UPDATE_INTERVAL_TIME_IN_MS: 60 * 1000 * 60 * 6,
+    DATA_RESET_INTERVAL_TIME_IN_MS: 1000 * 60 * 60 * 48
 })
 
 
@@ -57,4 +59,5 @@ export const dbIndexInit: DdbIndex = Object.freeze({
         [NS_DDB_INDEX_KEYS.total_count]: 0,
         [NS_DDB_INDEX_KEYS.last_crawl]: 0
     },
+    last_reset: 0
 })

@@ -5,7 +5,8 @@ opendatasg
 runtime nodejs18.x
   profile default
   region us-east-1
-  timeout 30
+  timeout 60
+  concurrency 50
 
 @http
 /*

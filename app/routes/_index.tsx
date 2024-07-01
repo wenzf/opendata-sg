@@ -58,6 +58,7 @@ export default function Index() {
   const loaderData = useLoaderData<typeof loader>()
   const feed = prettyFeed(loaderData?.feed)
   const isBot = loaderData?.isBot
+ // console.log(loaderData?.idx, loaderData?.feed)
   const { metasAndTitles: { home: { h1 } } } = texts
 
   /**
@@ -67,7 +68,7 @@ export default function Index() {
    * react-plock/Masonry is used to show the article
    * preview snippets in masonry style. The markup is rendered
    * client-side to take window size into account. As a result,
-   * the HTML markup is not server side rendered and therefor 
+   * the HTML markup is not server side rendered and therefor
    * harder for crawlers to read.
    * 
    * In order to deal with this, the client type (bot/human) is

@@ -25,10 +25,10 @@ export const handleDataFeedRequest = async ({
     const responsesForFrontend: ContentItemPublic[] = []
     const responsesToStoreInDB: ContentItemInternal[] = []
 
-    // idx request ok, db online?
     if (isDataCurrent !== null) {
         const idx = isDataCurrent?.idx
         const dataStatus = isDataCurrent?.dataStatus
+
         /**
          * CONFIGURE
          * requests without offset / non-paginated
@@ -87,7 +87,7 @@ export const handleDataFeedRequest = async ({
                     possibleJobsForAPI.push(oneContentCategory)
                 }
             }
-            
+
             const possibleItemsFromDb = await Promise.all(collectCallsForDb);
             const flatResults = possibleItemsFromDb.flat();
             const expectedEntries = (requestedContentTypes.length * itemsPerRequest) - adjustExpectedResults
@@ -98,6 +98,7 @@ export const handleDataFeedRequest = async ({
              * expect one entry less to avoid re-fetch in case of duplicate entries
              */
             if (resultsFromDBLength >= expectedEntries - 1) {
+                // await dbPutContentBulk(flatResults)
                 return { feed: flatResults, idx }
             } else {
                 // if not, fetch all
@@ -133,24 +134,30 @@ export const handleDataFeedRequest = async ({
                     )
                     responsesToStoreInDB.push(...modifiedResponse)
 
-                    for (let i = 0; i < modifiedResponse.length; i += 1) {
+                    for (let j = 0; j < modifiedResponse.length; j += 1) {
                         // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                        const { search_string, index_position, ...noInternals } = modifiedResponse[i]
+                        const { search_string, index_position, ...noInternals } = modifiedResponse[j]
                         responsesForFrontend.push(noInternals)
                     }
-                    didUpdate.push({
-                        category: dataAPIConfigs[i].contentCategory,
-                        update: [
-                            [NS_DDB_INDEX_KEYS.last_crawl, now],
-                            [NS_DDB_INDEX_KEYS.total_count, oneResultTotalCount]
-                        ]
-                    })
+
+                    if (modifiedResponse.length) {
+                        didUpdate.push({
+                            category: dataAPIConfigs[i].contentCategory,
+                            update: [
+                                [NS_DDB_INDEX_KEYS.last_crawl, now],
+                                [NS_DDB_INDEX_KEYS.total_count, oneResultTotalCount]
+                            ]
+                        })
+                    }
+
+
                 }
             }
             /**
              * update index
              */
-            await dbUpdateIndex(didUpdate)
+            //            updidx = await dbUpdateIndex(didUpdate)
+            if (didUpdate?.length) await dbUpdateIndex(didUpdate)
         }
         /**
          * DB

@@ -41,13 +41,20 @@ The canton and the city of St. Gallen publish press releases on separate platfor
 
 ## Keeping database in sync with data from APIs
 
-Search engines make several requests every day to websites that regularly have new content in order to index them. As the setup is event-driven, these requests are used to synchronize the website content with the data from the APIs. For each request from visitors or search engines to a feed page, the last time data was retrieved from the API is checked and if the time was a long time ago. If so, an API request is made and its results are compared with the last saved status and updated if necessary.
+Search engines make several requests every day to websites that regularly have new content in order to index them. As the setup is event-driven, these requests are used to synchronize the website content with the data from the APIs. For each request from visitors or search engines to a feed page, the last time data was retrieved from the API is checked and if the time exceeds a certain amount. If so, an API request is made and its results are compared with the last saved status and updated if necessary.
 
-- 1: The request arrives, an index file is read from the database. This contains the timestamp of when API was requested the and the number of entries (`total_results`) per API. If the last query was longer ago than `DATA_UPDATE_INTERVAL_TIME_IN_MS`, continue in step 2, otherwise, step 3b
+- 1: The request arrives, an `index entry` is read from the database. It contains the timestamp of when API was requested the and the number of entries (`total_results`) per API. If the last query was longer ago than `DATA_UPDATE_INTERVAL_TIME_IN_MS`, continue in step 2, otherwise, step 3b
 - 2: Request to the API. Update the index file. If `total_results` from the response matches the entry in the index file, continue with step 3b, otherwise, step 3a.
 - 3a: The data from the API from the previous step is converted into the internal data structure and saved in the database. The response is then sent to the client.
 - 3b: Content is retrieved from the database and sent to the client.
 
+### Fallback, handling of content edits
+The mechanism to determine if database is in sync with the API data is to compare the amount of entries as returned by the API (`total_results`) in each response. In case entries are deleted from the API or in case responses are corrupted, the mechanism of keeping data in sync might not work
+as intended. As a fallback for such situations, the `index entry` storing the amount of entries at the time of the last fetch is reset after `DATA_RESET_INTERVAL_TIME_IN_MS` (currently set to two days). This way, the last ten articles of each category are refetched and updated regardless of 
+the evaluated sync state. 
+
+The content of the ten most recent articles per category (`ENTRIES_SHOWN_IN_FEED`) are overwritten on re-fetches (excluding view counters) in order to include changes in case articles have been edited after publication. That's far from perfect but should cover most cases since edits are often done
+relatively close the time of publication.
 
 
 ## Development and deployment

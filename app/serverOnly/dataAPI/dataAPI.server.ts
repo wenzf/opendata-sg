@@ -78,6 +78,7 @@ export const dataAPI = async ({
         ],
         offset
     })
+
     if (res) return res
     return res
 }

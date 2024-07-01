@@ -1,11 +1,13 @@
 import { Params } from "@remix-run/react"
 import { NS_CONTENT_CATEGORY, PUBLIC_CONFIG } from "~/config"
+
 import texts from "~/texts"
 import { BreadCrumbBase, ContentCategoryKeys, ContentItemPublic } from "~/types"
 
 const {
     ROUTE_FRAGMENTS: {
-        KANTON, STADT, MITTEILUNGEN, POLIZEI, VERNEHMLASSUNGEN, ARTIKEL, SUCHE
+        KANTON, STADT, MITTEILUNGEN, POLIZEI, VERNEHMLASSUNGEN, ARTIKEL, SUCHE,
+        IMPRESSUM
     },
     PAGE_HANDLES: { FEED, ARTICLE, SEARCH }
 } = PUBLIC_CONFIG
@@ -138,12 +140,17 @@ export const createBreadCrumbProps = ({ params, page }: {
     const { section, category, pageNum, searchTerm } = params
     const {
         labels: { nav: { Kanton, Stadt, Mitteilungen, Vernehmlassungen, Artikel,
-            Polizei, Home, Seite, Suche, Begriff } }
+            Polizei, Home, Seite, Suche, Begriff, Impressum } }
     } = texts
 
     const breadCrumbRoot: BreadCrumbBase[] = [{ label: Home, path: "/" }]
 
-    if (page === FEED || page === ARTICLE) {
+    if (page === PUBLIC_CONFIG.PAGE_HANDLES.IMPRESSUM) {
+        breadCrumbRoot.push({
+            label: Impressum,
+            path: `/${IMPRESSUM}`
+        })
+    } else if (page === FEED || page === ARTICLE) {
         if (section === STADT) {
             breadCrumbRoot.push({
                 label: Stadt,

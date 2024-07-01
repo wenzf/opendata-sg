@@ -16,7 +16,7 @@ export type Theme =  "light" | "dark" | ""
 
 export type ContentCategoryKeys = keyof typeof NS_CONTENT_CATEGORY
 export type DdbIndexKeys = keyof typeof NS_DDB_INDEX_KEYS
-export type DdbIndex = Record<ContentCategoryKeys, Record<DdbIndexKeys, number>>
+export type DdbIndex = Record<ContentCategoryKeys, Record<DdbIndexKeys, number>, {last_reset: number}>
 
 export type DbUpdateIndexProps = {
     category: ContentCategoryKeys

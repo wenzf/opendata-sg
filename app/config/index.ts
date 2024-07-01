@@ -35,7 +35,8 @@ export const PUBLIC_CONFIG = Object.freeze({
         HOME: 'HOME',
         SEARCH: 'SEARCH',
         ARTICLE: 'ARTICLE',
-        FEED: 'FEED'
+        FEED: 'FEED',
+        IMPRESSUM: 'IMPRESSUM'
     },
     DEFAULT_OG_IMAGE(): string {
         return PUBLIC_CONFIG.DOMAIN_NAME + '/_static/icons/android-chrome-512x512.png'

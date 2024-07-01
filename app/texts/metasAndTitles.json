@@ -3,22 +3,22 @@
     "root": {
       "h1": "Medienmitteilungen nach Stichworten finden",
       "title": "Medienmitteilungen Stichwortsuche",
-      "metaDescription": "Medienmitteilungen, Polizeiberichte und Vernehmlassungen von Kanton und Stadtverwaltung St. Gallen nach Stichworten finden."
+      "metaDescription": "Medienmitteilungen, Polizeiberichte und Vernehmlassungen von Kanton und Stadtverwaltung St. Gallen nach Stichworten durchsuchen."
     },
     "searchTermAllCats": {
       "h1": "Medienmitteilungen zum Stichwort \"{{keyword}}\"",
       "title": "Medienmitteilungen aller Kategorien zum Thema \"{{keyword}}\"",
-      "metaDescription": "Medienmitteilungen, Polizeiberichte und Vermehmlassungen von Stadt und Kanton St. Gallen zum Begriff \"{{keyword}}\""
+      "metaDescription": "Medienmitteilungen, Polizeiberichte und Vermehmlassungen von Stadt und Kanton St. Gallen zum Suchbegriff \"{{keyword}}\""
     }
   },
   "home": {
-    "h1": "Medienmitteilungen der Sadtverwaltung und des Kantons St. Gallen",
+    "h1": "Medienmitteilungen der Stadtverwaltung und des Kantons St. Gallen",
     "title": "Medienmitteilungen St. Gallen",
     "metaDescription": "Portal für Medienmitteilungen und Vernehmlassungen der Stadtverwaltung, Polizei sowie des Kantons St. Gallen."
   },
   "impressum": {
     "h1": "Über OpenData St. Gallen",
     "title": "Impressum des Projekts OpenData St. Gallen",
-    "metaDescription": "OpenData St. Gallen ist ein Open Source und Open Data Projekt, um offizielle Mitteilungen frei verfügbar zu machen."
+    "metaDescription": "OpenData St. Gallen ist ein Open Source und Open Data Projekt, das offizielle Medienmitteilungen frei verfügbar macht."
   }
 }
